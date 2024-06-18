@@ -1,0 +1,24 @@
+<!-- Tabla de productos y sucursales -->
+<div class="container">
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>ID Sucursal</th>
+          <th>Sucursal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productosSucursales">
+          <td>{{ item.ID }}</td>
+          <td class="text-truncate" style="max-width: 150px;">{{ item.Producto }}</td>
+          <td>{{ item.Cantidad }}</td>
+          <td>{{ item['ID Sucursal'] }}</td>
+          <td>{{ item.sucursal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

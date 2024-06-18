@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Ventas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center my-4">Listado de Ventas</h2>
+
+        <!-- Tabla de ventas -->
+        <div class="container">
+            <table class="table table-striped table-bordered table-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Fecha</th>
+                        <th>ID Empleado</th>
+                        <th>Nombre Empleado</th>
+                        <th>Cliente ID</th>
+                        <th>Nombre Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let venta of ventas">
+                        <td>{{ venta.Producto }}</td>
+                        <td>{{ venta.Cantidad }}</td>
+                        <td>{{ venta.Precio }}</td>
+                        <td>{{ venta.fecha }}</td>
+                        <td>{{ venta["ID Empleado"] }}</td>
+                        <td>{{ venta["Nombre Empleado"] }}</td>
+                        <td>{{ venta["Cliente ID"] }}</td>
+                        <td>{{ venta["Nombre Cliente"] }}</td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Cargar los datos desde el archivo JSON
+            $.getJSON('resultados.json', function(data) {
+                let tableBody = $('#ventas-table-body');
+                data.forEach(function(item) {
+                    let row = `<tr>
+                        <td>${item.Producto}</td>
+                        <td>${item.Cantidad}</td>
+                        <td>${item.Precio}</td>
+                        <td>${item.fecha}</td>
+                        <td>${item['ID Empleado']}</td>
+                        <td>${item['Nombre Empleado']}</td>
+                        <td>${item['Cliente ID']}</td>
+                        <td>${item['Nombre Cliente']}</td>
+                    </tr>`;
+                    tableBody.append(row);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

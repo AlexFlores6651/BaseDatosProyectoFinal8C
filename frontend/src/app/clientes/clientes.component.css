@@ -1,0 +1,26 @@
+/* Estilos para la tabla de clientes */
+.table {
+    margin-bottom: 1rem; /* Espacio adicional en la parte inferior */
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle; /* Alineación vertical centrada */
+  }
+  
+  /* Estilos para las filas impares */
+  .table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Color de fondo alternativo para filas impares */
+  }
+  
+  /* Ajustar el ancho de las columnas según el contenido */
+  .table th,
+  .table td {
+    white-space: nowrap; /* Evitar el ajuste de texto en varias líneas */
+  }
+  
+  /* Ajustar el ancho de la tabla al contenedor */
+  .container {
+    overflow-x: auto; /* Permitir desplazamiento horizontal si el contenido es más ancho que el contenedor */
+  }
+  

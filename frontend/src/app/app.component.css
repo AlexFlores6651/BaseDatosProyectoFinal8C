@@ -1,0 +1,15 @@
+a{
+    color: white;
+  }
+  
+  a:hover{
+    color: gainsboro;
+  }
+  
+  a:active{
+    color: gold;
+  }
+
+  .footer {
+    font-family: 'Arial', sans-serif;
+  }

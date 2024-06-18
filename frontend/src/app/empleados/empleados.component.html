@@ -1,0 +1,143 @@
+<div class="container mt-5">
+    <h2 class="text-center my-4">Listado de Empleados</h2>
+  
+    <!-- Tabla de empleados -->
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>ID Empleado</th>
+          <th>Nombre Empleado</th>
+          <th>Sucursal</th>
+          <th>Municipio</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados">
+          <td>{{ empleado.id }}</td>
+          <td>{{ empleado.empleadoNombre }}</td>
+          <td>{{ empleado.sucursalNombre }}</td>
+          <td>{{ empleado.municipioNombre }}</td>
+          <td>{{ empleado.estadoNombre }}</td>
+          <td>
+            <button (click)="editarEmpleado(empleado)" class="btn btn-warning btn-sm">Editar</button>
+            <button (click)="eliminarEmpleado(empleado.idEmpleado)" class="btn btn-danger btn-sm">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Formulario para agregar un nuevo empleado -->
+    <div class="mt-4">
+      <h3>Agregar Nuevo Empleado</h3>
+      <form (ngSubmit)="agregarEmpleado()">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" [(ngModel)]="nuevoEmpleado.nombre" name="nombre" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="codigo">Código:</label>
+            <input type="text" id="codigo" [(ngModel)]="nuevoEmpleado.codigo" name="codigo" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="primape">Primer Apellido:</label>
+            <input type="text" id="primape" [(ngModel)]="nuevoEmpleado.primape" name="primape" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="segape">Segundo Apellido:</label>
+            <input type="text" id="segape" [(ngModel)]="nuevoEmpleado.segape" name="segape" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="puesto">Puesto:</label>
+            <input type="text" id="puesto" [(ngModel)]="nuevoEmpleado.puesto" name="puesto" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="activo">Activo:</label>
+            <input type="text" id="activo" [(ngModel)]="nuevoEmpleado.activo" name="activo" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="email">Email:</label>
+            <input type="email" id="email" [(ngModel)]="nuevoEmpleado.email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" [(ngModel)]="nuevoEmpleado.telefono" name="telefono" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cdg_dir">Código Dirección:</label>
+            <input type="text" id="cdg_dir" [(ngModel)]="nuevoEmpleado.cdg_dir" name="cdg_dir" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="id_suc">ID Sucursal:</label>
+            <input type="text" id="id_suc" [(ngModel)]="nuevoEmpleado.id_suc" name="id_suc" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="cdg_jefe">Código Jefe:</label>
+            <input type="text" id="cdg_jefe" [(ngModel)]="nuevoEmpleado.cdg_jefe" name="cdg_jefe" class="form-control" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </form>
+    </div>
+  
+    <!-- Formulario para editar un empleado -->
+    <div class="mt-4" *ngIf="empleadoEditado.idEmpleado !== undefined">
+      <h3>Editar Empleado</h3>
+      <form (ngSubmit)="actualizarEmpleado()">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="editNombre">Nombre:</label>
+            <input type="text" id="editNombre" [(ngModel)]="empleadoEditado.nombre" name="editNombre" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editCodigo">Código:</label>
+            <input type="text" id="editCodigo" [(ngModel)]="empleadoEditado.codigo" name="editCodigo" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editPrimape">Primer Apellido:</label>
+            <input type="text" id="editPrimape" [(ngModel)]="empleadoEditado.primape" name="editPrimape" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editSegape">Segundo Apellido:</label>
+            <input type="text" id="editSegape" [(ngModel)]="empleadoEditado.segape" name="editSegape" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editPuesto">Puesto:</label>
+            <input type="text" id="editPuesto" [(ngModel)]="empleadoEditado.puesto" name="editPuesto" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editActivo">Activo:</label>
+            <input type="text" id="editActivo" [(ngModel)]="empleadoEditado.activo" name="editActivo" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail" [(ngModel)]="empleadoEditado.email" name="editEmail" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editTelefono">Teléfono:</label>
+            <input type="text" id="editTelefono" [(ngModel)]="empleadoEditado.telefono" name="editTelefono" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editCdg_dir">Código Dirección:</label>
+            <input type="text" id="editCdg_dir" [(ngModel)]="empleadoEditado.cdg_dir" name="editCdg_dir" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editId_suc">ID Sucursal:</label>
+            <input type="text" id="editId_suc" [(ngModel)]="empleadoEditado.id_suc" name="editId_suc" class="form-control" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="editCdg_jefe">Código Jefe:</label>
+            <input type="text" id="editCdg_jefe" [(ngModel)]="empleadoEditado.cdg_jefe" name="editCdg_jefe" class="form-control" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </form>
+    </div>
+  </div>
+  
